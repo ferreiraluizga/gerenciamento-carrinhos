@@ -17,4 +17,5 @@ public class BuscarDispositivoPorSerialUseCaseImpl implements BuscarDispositivoP
     public Optional<Dispositivo> execute(String serial) {
         return dispositivoGateway.buscarDispositivoPorSerial(serial);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.ferreiraluizga.exceptions;
+package com.ferreiraluizga.exceptions.carrinho;
 
 public class CarrinhoNaoEncontrado extends RuntimeException {
     public CarrinhoNaoEncontrado(Long id) {

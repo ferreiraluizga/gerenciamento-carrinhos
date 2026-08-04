@@ -1,7 +1,7 @@
 package com.ferreiraluizga.usecases.carrinho;
 
 import com.ferreiraluizga.entities.Carrinho;
-import com.ferreiraluizga.exceptions.CarrinhoNaoEncontrado;
+import com.ferreiraluizga.exceptions.carrinho.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.gateways.CarrinhoGateway;
 
 public class AtualizarCarrinhoUseCaseImpl implements AtualizarCarrinhoUseCase {
@@ -14,7 +14,7 @@ public class AtualizarCarrinhoUseCaseImpl implements AtualizarCarrinhoUseCase {
 
     @Override
     public Carrinho execute(Carrinho carrinho) {
-        Carrinho carrinhoExistente = carrinhoGateway.buscarCarrinhoPorId(carrinho.id())
+        carrinhoGateway.buscarCarrinhoPorId(carrinho.id())
                 .orElseThrow(() -> new CarrinhoNaoEncontrado(carrinho.id()));
 
         return carrinhoGateway.atualizarCarrinho(carrinho);

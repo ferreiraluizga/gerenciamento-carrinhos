@@ -1,7 +1,7 @@
 package com.ferreiraluizga.infrastructure.presentation;
 
 import com.ferreiraluizga.entities.Carrinho;
-import com.ferreiraluizga.exceptions.CarrinhoNaoEncontrado;
+import com.ferreiraluizga.exceptions.carrinho.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.infrastructure.dtos.request.CarrinhoRequest;
 import com.ferreiraluizga.infrastructure.dtos.response.CarrinhoResponse;
 import com.ferreiraluizga.infrastructure.mappers.carrinho.CarrinhoDtoMapper;
