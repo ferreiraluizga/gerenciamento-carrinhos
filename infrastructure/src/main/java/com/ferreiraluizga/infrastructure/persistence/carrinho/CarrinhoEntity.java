@@ -16,6 +16,7 @@ public class CarrinhoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String descricao;
 
 }

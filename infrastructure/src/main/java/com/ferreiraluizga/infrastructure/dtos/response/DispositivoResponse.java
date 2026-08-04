@@ -1,9 +1,9 @@
-package com.ferreiraluizga.entities;
+package com.ferreiraluizga.infrastructure.dtos.response;
 
 import com.ferreiraluizga.enums.ModeloDispositivo;
 import com.ferreiraluizga.enums.SistemaOperacional;
 
-public record Dispositivo(
+public record DispositivoResponse(
         Long id,
         String serial,
         Integer numDispositivo,

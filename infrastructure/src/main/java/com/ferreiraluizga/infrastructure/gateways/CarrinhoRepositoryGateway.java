@@ -27,8 +27,7 @@ public class CarrinhoRepositoryGateway implements CarrinhoGateway {
 
     @Override
     public List<Carrinho> listarCarrinhos() {
-        List<CarrinhoEntity> entityResponse = carrinhoRepository.findAll();
-        return entityResponse.stream()
+        return carrinhoRepository.findAll().stream()
                 .map(carrinhoEntityMapper::toDomain)
                 .collect(Collectors.toList());
     }
