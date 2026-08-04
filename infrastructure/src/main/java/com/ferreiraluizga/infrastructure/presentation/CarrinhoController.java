@@ -5,9 +5,7 @@ import com.ferreiraluizga.exceptions.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.infrastructure.dtos.request.CarrinhoRequest;
 import com.ferreiraluizga.infrastructure.dtos.response.CarrinhoResponse;
 import com.ferreiraluizga.infrastructure.mappers.carrinho.CarrinhoDtoMapper;
-import com.ferreiraluizga.usecases.carrinho.BuscarCarrinhoPorIdUseCase;
-import com.ferreiraluizga.usecases.carrinho.ListarCarrinhosUseCase;
-import com.ferreiraluizga.usecases.carrinho.SalvarCarrinhoUseCase;
+import com.ferreiraluizga.usecases.carrinho.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,6 +24,8 @@ public class CarrinhoController {
     private final SalvarCarrinhoUseCase salvarCarrinhoUseCase;
     private final ListarCarrinhosUseCase listarCarrinhosUseCase;
     private final BuscarCarrinhoPorIdUseCase buscarCarrinhoPorIdUseCase;
+    private final AtualizarCarrinhoUseCase atualizarCarrinhoUseCase;
+    private final ExcluirCarrinhoUseCase excluirCarrinhoUseCase;
 
     @PostMapping
     public ResponseEntity<CarrinhoResponse> salvarCarrinho(@Valid @RequestBody CarrinhoRequest dto) {
@@ -50,6 +49,20 @@ public class CarrinhoController {
                 .orElseThrow(() -> new CarrinhoNaoEncontrado(id));
         return ResponseEntity.status(HttpStatus.OK)
                 .body(carrinhoDtoMapper.toDto(response));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CarrinhoResponse> atualizarCarrinho(@PathVariable Long id, @Valid @RequestBody CarrinhoRequest dto) {
+        Carrinho response = atualizarCarrinhoUseCase.execute(carrinhoDtoMapper.toDomain(id, dto));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(carrinhoDtoMapper.toDto(response));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirCarrinho(@PathVariable Long id) {
+        excluirCarrinhoUseCase.execute(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

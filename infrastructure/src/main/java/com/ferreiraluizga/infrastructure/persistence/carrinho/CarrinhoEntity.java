@@ -1,12 +1,9 @@
 package com.ferreiraluizga.infrastructure.persistence.carrinho;
 
-import com.ferreiraluizga.entities.Dispositivo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "carrinhos")
@@ -16,7 +13,7 @@ import java.util.List;
 public class CarrinhoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String descricao;

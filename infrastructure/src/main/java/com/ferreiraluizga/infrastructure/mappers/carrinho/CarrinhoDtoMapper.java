@@ -16,6 +16,14 @@ public class CarrinhoDtoMapper {
         );
     }
 
+    // dto -> domain (put)
+    public Carrinho toDomain(Long id, CarrinhoRequest dto) {
+        return new Carrinho(
+                id,
+                dto.descricao()
+        );
+    }
+
     // domain -> dto
     public CarrinhoResponse toDto(Carrinho carrinho) {
         return new CarrinhoResponse(
