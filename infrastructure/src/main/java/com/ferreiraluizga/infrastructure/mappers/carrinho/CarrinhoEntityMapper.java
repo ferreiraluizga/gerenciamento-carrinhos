@@ -22,7 +22,6 @@ public class CarrinhoEntityMapper {
     public Carrinho toDomain(CarrinhoEntity entity) {
         if (entity == null) return null;
 
-        // Mapeia a lista trazida do banco para o domínio usando streams
         List<Dispositivo> dispositivos = entity.getDispositivos() != null
                 ? entity.getDispositivos().stream()
                   .map(dispositivoEntityMapper::toDomain)
