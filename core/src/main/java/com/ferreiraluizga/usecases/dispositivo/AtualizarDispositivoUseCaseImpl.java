@@ -18,6 +18,7 @@ public class AtualizarDispositivoUseCaseImpl implements AtualizarDispositivoUseC
         dispositivoGateway.buscarDispositivoPorId(dispositivo.id())
                 .orElseThrow(() -> new DispositivoNaoEncontrado(dispositivo.id()));
         dispositivoGateway.buscarDispositivoPorSerial(dispositivo.serial())
+                .filter(d -> !d.id().equals(dispositivo.id()))
                 .ifPresent(d -> {
                     throw new SerialEncontrado(dispositivo.serial());
                 });
