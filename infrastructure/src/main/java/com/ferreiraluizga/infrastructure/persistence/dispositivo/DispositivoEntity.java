@@ -2,6 +2,7 @@ package com.ferreiraluizga.infrastructure.persistence.dispositivo;
 
 import com.ferreiraluizga.enums.ModeloDispositivo;
 import com.ferreiraluizga.enums.SistemaOperacional;
+import com.ferreiraluizga.infrastructure.persistence.carrinho.CarrinhoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,5 +40,9 @@ public class DispositivoEntity {
 
     @Column(nullable = false)
     private Boolean manutencao;
+
+    @ManyToOne
+    @JoinColumn(name = "carrinho_id", nullable = false)
+    private CarrinhoEntity carrinho;
 
 }

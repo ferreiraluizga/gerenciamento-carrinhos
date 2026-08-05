@@ -1,9 +1,12 @@
 package com.ferreiraluizga.infrastructure.persistence.carrinho;
 
+import com.ferreiraluizga.infrastructure.persistence.dispositivo.DispositivoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "carrinhos")
@@ -18,5 +21,8 @@ public class CarrinhoEntity {
 
     @Column(nullable = false)
     private String descricao;
+
+    @OneToMany(mappedBy = "carrinho")
+    private List<DispositivoEntity> dispositivos;
 
 }

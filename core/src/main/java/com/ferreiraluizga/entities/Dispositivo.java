@@ -11,5 +11,6 @@ public record Dispositivo(
         SistemaOperacional sistemaOperacional,
         Boolean ativo,
         String observacao,
-        Boolean manutencao
+        Boolean manutencao,
+        Carrinho carrinho
 ) { }

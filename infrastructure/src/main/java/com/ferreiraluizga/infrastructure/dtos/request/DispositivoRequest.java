@@ -10,5 +10,6 @@ public record DispositivoRequest(
         SistemaOperacional sistemaOperacional,
         Boolean ativo,
         String observacao,
-        Boolean manutencao
+        Boolean manutencao,
+        Long carrinhoId
 ) { }

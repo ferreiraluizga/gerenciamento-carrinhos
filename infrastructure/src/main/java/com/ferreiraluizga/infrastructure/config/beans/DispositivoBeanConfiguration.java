@@ -1,5 +1,6 @@
 package com.ferreiraluizga.infrastructure.config.beans;
 
+import com.ferreiraluizga.gateways.CarrinhoGateway;
 import com.ferreiraluizga.gateways.DispositivoGateway;
 import com.ferreiraluizga.usecases.dispositivo.*;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class DispositivoBeanConfiguration {
 
     @Bean
-    public SalvarDispositivoUseCase salvarDispositivoUseCase(DispositivoGateway dispositivoGateway) {
-        return new SalvarDispositivoUseCaseImpl(dispositivoGateway);
+    public SalvarDispositivoUseCase salvarDispositivoUseCase(DispositivoGateway dispositivoGateway, CarrinhoGateway carrinhoGateway) {
+        return new SalvarDispositivoUseCaseImpl(dispositivoGateway, carrinhoGateway);
     }
 
     @Bean

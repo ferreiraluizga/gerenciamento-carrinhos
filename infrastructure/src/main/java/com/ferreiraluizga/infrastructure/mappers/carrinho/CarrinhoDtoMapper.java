@@ -5,6 +5,8 @@ import com.ferreiraluizga.infrastructure.dtos.request.CarrinhoRequest;
 import com.ferreiraluizga.infrastructure.dtos.response.CarrinhoResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+
 @Component
 public class CarrinhoDtoMapper {
 
@@ -12,7 +14,8 @@ public class CarrinhoDtoMapper {
     public Carrinho toDomain(CarrinhoRequest dto) {
         return new Carrinho(
                 null,
-                dto.descricao()
+                dto.descricao(),
+                Collections.emptyList()
         );
     }
 
@@ -20,15 +23,19 @@ public class CarrinhoDtoMapper {
     public Carrinho toDomain(Long id, CarrinhoRequest dto) {
         return new Carrinho(
                 id,
-                dto.descricao()
+                dto.descricao(),
+                Collections.emptyList()
         );
     }
 
     // domain -> dto
     public CarrinhoResponse toDto(Carrinho carrinho) {
+        int quantDispositivos = (carrinho.dispositivos() != null) ? carrinho.dispositivos().size() : 0;
+
         return new CarrinhoResponse(
                 carrinho.id(),
-                carrinho.descricao()
+                carrinho.descricao(),
+                quantDispositivos
         );
     }
 

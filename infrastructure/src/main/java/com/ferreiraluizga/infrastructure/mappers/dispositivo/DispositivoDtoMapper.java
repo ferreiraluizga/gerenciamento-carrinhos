@@ -1,5 +1,6 @@
 package com.ferreiraluizga.infrastructure.mappers.dispositivo;
 
+import com.ferreiraluizga.entities.Carrinho;
 import com.ferreiraluizga.entities.Dispositivo;
 import com.ferreiraluizga.infrastructure.dtos.request.DispositivoRequest;
 import com.ferreiraluizga.infrastructure.dtos.response.DispositivoResponse;
@@ -10,6 +11,11 @@ public class DispositivoDtoMapper {
 
     // dto -> domain
     public Dispositivo toDomain(DispositivoRequest dto) {
+        Carrinho c = new Carrinho(
+                dto.carrinhoId(),
+                null,
+                null);
+
         return new Dispositivo(
                 null,
                 dto.serial(),
@@ -18,12 +24,18 @@ public class DispositivoDtoMapper {
                 dto.sistemaOperacional(),
                 dto.ativo(),
                 dto.observacao(),
-                dto.manutencao()
+                dto.manutencao(),
+                c
         );
     }
 
     // dto -> domain (put)
     public Dispositivo toDomain(Long id, DispositivoRequest dto) {
+        Carrinho c = new Carrinho(
+                dto.carrinhoId(),
+                null,
+                null);
+
         return new Dispositivo(
                 id,
                 dto.serial(),
@@ -32,7 +44,8 @@ public class DispositivoDtoMapper {
                 dto.sistemaOperacional(),
                 dto.ativo(),
                 dto.observacao(),
-                dto.manutencao()
+                dto.manutencao(),
+                c
         );
     }
 
@@ -46,7 +59,9 @@ public class DispositivoDtoMapper {
                 dispositivo.sistemaOperacional(),
                 dispositivo.ativo(),
                 dispositivo.observacao(),
-                dispositivo.manutencao()
+                dispositivo.manutencao(),
+                dispositivo.carrinho().id(),
+                dispositivo.carrinho().descricao()
         );
     }
 

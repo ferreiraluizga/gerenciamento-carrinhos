@@ -1,6 +1,8 @@
 package com.ferreiraluizga.infrastructure.mappers.dispositivo;
 
+import com.ferreiraluizga.entities.Carrinho;
 import com.ferreiraluizga.entities.Dispositivo;
+import com.ferreiraluizga.infrastructure.persistence.carrinho.CarrinhoEntity;
 import com.ferreiraluizga.infrastructure.persistence.dispositivo.DispositivoEntity;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +19,12 @@ public class DispositivoEntityMapper {
                 entity.getSistemaOperacional(),
                 entity.getAtivo(),
                 entity.getObservacao(),
-                entity.getManutencao()
+                entity.getManutencao(),
+                new Carrinho(
+                        entity.getCarrinho().getId(),
+                        entity.getCarrinho().getDescricao(),
+                        null
+                )
         );
     }
 
@@ -31,7 +38,12 @@ public class DispositivoEntityMapper {
                 dispositivo.sistemaOperacional(),
                 dispositivo.ativo(),
                 dispositivo.observacao(),
-                dispositivo.manutencao()
+                dispositivo.manutencao(),
+                new CarrinhoEntity(
+                        dispositivo.carrinho().id(),
+                        dispositivo.carrinho().descricao(),
+                        null
+                )
         );
     }
 
