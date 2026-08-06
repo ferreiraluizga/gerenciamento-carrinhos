@@ -22,6 +22,7 @@ public class SalvarOcorrenciaUseCaseImpl implements SalvarOcorrenciaUseCase{
     public Ocorrencia execute(Ocorrencia ocorrencia) {
         dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
                 .orElseThrow(() -> new DispositivoNaoEncontrado(ocorrencia.dispositivo().id()));
+
         return ocorrenciaGateway.salvarOcorrencia(new Ocorrencia(
                 null,
                 ocorrencia.dispositivo(),

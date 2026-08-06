@@ -4,6 +4,6 @@ import com.ferreiraluizga.entities.Ocorrencia;
 
 public interface DefinirOcorrenciaManutencaoUseCase {
 
-    Ocorrencia execute(Long id);
+    Ocorrencia execute(Long id, String observacao);
 
 }

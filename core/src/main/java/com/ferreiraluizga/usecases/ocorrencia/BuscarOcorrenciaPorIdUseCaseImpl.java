@@ -18,4 +18,5 @@ public class BuscarOcorrenciaPorIdUseCaseImpl implements BuscarOcorrenciaPorIdUs
     public Optional<Ocorrencia> execute(Long id) {
         return ocorrenciaGateway.buscarOcorrenciaPorId(id);
     }
+
 }

@@ -2,30 +2,27 @@ package com.ferreiraluizga.usecases.ocorrencia;
 
 import com.ferreiraluizga.entities.Dispositivo;
 import com.ferreiraluizga.entities.Ocorrencia;
-import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.gateways.DispositivoGateway;
 import com.ferreiraluizga.gateways.OcorrenciaGateway;
 
-import java.time.LocalDateTime;
-
-public class FecharOcorrenciaUseCaseImpl implements FecharOcorrenciaUseCase{
+public class DefinirOcorrenciaManutencaoUseCaseImpl implements DefinirOcorrenciaManutencaoUseCase {
 
     private final OcorrenciaGateway ocorrenciaGateway;
     private final DispositivoGateway dispositivoGateway;
 
-    public FecharOcorrenciaUseCaseImpl(OcorrenciaGateway ocorrenciaGateway, DispositivoGateway dispositivoGateway) {
+    public DefinirOcorrenciaManutencaoUseCaseImpl(OcorrenciaGateway ocorrenciaGateway, DispositivoGateway dispositivoGateway) {
         this.ocorrenciaGateway = ocorrenciaGateway;
         this.dispositivoGateway = dispositivoGateway;
     }
 
     @Override
-    public Ocorrencia execute(Long id, String feedback, LocalDateTime dataFeedback) {
+    public Ocorrencia execute(Long id, String observacao) {
         Ocorrencia ocorrencia = ocorrenciaGateway.buscarOcorrenciaPorId(id)
                 .orElseThrow(() -> new OcorrenciaNaoEncontrada(id));
 
         Dispositivo dispositivo = dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
-                .orElseThrow(() -> new DispositivoNaoEncontrado(ocorrencia.dispositivo().id()));
+                .orElseThrow(() -> new OcorrenciaNaoEncontrada(ocorrencia.dispositivo().id()));
 
         dispositivoGateway.atualizarDispositivo(new Dispositivo(
                 dispositivo.id(),
@@ -34,11 +31,12 @@ public class FecharOcorrenciaUseCaseImpl implements FecharOcorrenciaUseCase{
                 dispositivo.modeloDispositivo(),
                 dispositivo.sistemaOperacional(),
                 dispositivo.ativo(),
-                null,
-                false,
+                observacao,
+                true,
                 dispositivo.carrinho()
         ));
 
-        return ocorrenciaGateway.fecharOcorrencia(id, feedback, dataFeedback);
+        return ocorrenciaGateway.definirOcorrenciaManutencao(id, observacao);
     }
+
 }
