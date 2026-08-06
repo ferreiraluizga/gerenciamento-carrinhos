@@ -13,5 +13,6 @@ public record DispositivoResponse(
         String observacao,
         Boolean manutencao,
         Long carrinhoId,
-        String carrinhoDescricao
+        String carrinhoDescricao,
+        Integer quantOcorrencias
 ) { }

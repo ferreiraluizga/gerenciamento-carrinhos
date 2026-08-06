@@ -2,6 +2,7 @@ package com.ferreiraluizga.usecases.ocorrencia;
 
 import com.ferreiraluizga.entities.Dispositivo;
 import com.ferreiraluizga.entities.Ocorrencia;
+import com.ferreiraluizga.enums.StatusOcorrencia;
 import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.gateways.DispositivoGateway;
@@ -20,7 +21,7 @@ public class FecharOcorrenciaUseCaseImpl implements FecharOcorrenciaUseCase{
     }
 
     @Override
-    public Ocorrencia execute(Long id, String feedback, LocalDateTime dataFeedback) {
+    public Ocorrencia execute(Long id, String feedback) {
         Ocorrencia ocorrencia = ocorrenciaGateway.buscarOcorrenciaPorId(id)
                 .orElseThrow(() -> new OcorrenciaNaoEncontrada(id));
 
@@ -36,9 +37,10 @@ public class FecharOcorrenciaUseCaseImpl implements FecharOcorrenciaUseCase{
                 dispositivo.ativo(),
                 null,
                 false,
-                dispositivo.carrinho()
+                dispositivo.carrinho(),
+                dispositivo.ocorrencias()
         ));
 
-        return ocorrenciaGateway.fecharOcorrencia(id, feedback, dataFeedback);
+        return ocorrenciaGateway.fecharOcorrencia(ocorrencia.fecharOcorrencia(feedback));
     }
 }

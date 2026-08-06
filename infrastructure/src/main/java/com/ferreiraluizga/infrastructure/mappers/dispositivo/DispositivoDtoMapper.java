@@ -25,7 +25,8 @@ public class DispositivoDtoMapper {
                 dto.ativo(),
                 dto.observacao(),
                 dto.manutencao(),
-                c
+                c,
+                null
         );
     }
 
@@ -45,12 +46,15 @@ public class DispositivoDtoMapper {
                 dto.ativo(),
                 dto.observacao(),
                 dto.manutencao(),
-                c
+                c,
+                null
         );
     }
 
     // domain -> dto
     public DispositivoResponse toDto(Dispositivo dispositivo) {
+        int quantOcorrencias = (dispositivo.ocorrencias() != null) ? dispositivo.ocorrencias().size() : 0;
+
         return new DispositivoResponse(
                 dispositivo.id(),
                 dispositivo.serial(),
@@ -61,7 +65,8 @@ public class DispositivoDtoMapper {
                 dispositivo.observacao(),
                 dispositivo.manutencao(),
                 dispositivo.carrinho().id(),
-                dispositivo.carrinho().descricao()
+                dispositivo.carrinho().descricao(),
+                quantOcorrencias
         );
     }
 

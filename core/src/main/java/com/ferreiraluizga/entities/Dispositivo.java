@@ -3,6 +3,8 @@ package com.ferreiraluizga.entities;
 import com.ferreiraluizga.enums.ModeloDispositivo;
 import com.ferreiraluizga.enums.SistemaOperacional;
 
+import java.util.List;
+
 public record Dispositivo(
         Long id,
         String serial,
@@ -12,5 +14,6 @@ public record Dispositivo(
         Boolean ativo,
         String observacao,
         Boolean manutencao,
-        Carrinho carrinho
+        Carrinho carrinho,
+        List<Ocorrencia> ocorrencias
 ) { }

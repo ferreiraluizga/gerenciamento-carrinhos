@@ -14,9 +14,9 @@ public interface OcorrenciaGateway {
 
     Optional<Ocorrencia> buscarOcorrenciaPorId(Long id);
 
-    Ocorrencia definirOcorrenciaManutencao(Long id, String observacao);
+    Ocorrencia definirOcorrenciaManutencao(Ocorrencia ocorrencia);
 
-    Ocorrencia fecharOcorrencia(Long id, String feedback, LocalDateTime dataFeedback);
+    Ocorrencia fecharOcorrencia(Ocorrencia ocorrencia);
 
     void excluirOcorrencia(Long id);
 

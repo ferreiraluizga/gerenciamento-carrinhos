@@ -33,10 +33,11 @@ public class DefinirOcorrenciaManutencaoUseCaseImpl implements DefinirOcorrencia
                 dispositivo.ativo(),
                 observacao,
                 true,
-                dispositivo.carrinho()
+                dispositivo.carrinho(),
+                dispositivo.ocorrencias()
         ));
 
-        return ocorrenciaGateway.definirOcorrenciaManutencao(id, observacao);
+        return ocorrenciaGateway.definirOcorrenciaManutencao(ocorrencia.definirOcorrenciaManutencao());
     }
 
 }

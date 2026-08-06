@@ -3,10 +3,13 @@ package com.ferreiraluizga.infrastructure.persistence.dispositivo;
 import com.ferreiraluizga.enums.ModeloDispositivo;
 import com.ferreiraluizga.enums.SistemaOperacional;
 import com.ferreiraluizga.infrastructure.persistence.carrinho.CarrinhoEntity;
+import com.ferreiraluizga.infrastructure.persistence.ocorrencia.OcorrenciaEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "dispositivos")
@@ -44,5 +47,8 @@ public class DispositivoEntity {
     @ManyToOne
     @JoinColumn(name = "carrinho_id", nullable = false)
     private CarrinhoEntity carrinho;
+
+    @OneToMany(mappedBy = "dispositivo")
+    private List<OcorrenciaEntity> ocorrencias;
 
 }
