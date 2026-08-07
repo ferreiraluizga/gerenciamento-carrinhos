@@ -1,5 +1,6 @@
 package com.ferreiraluizga.usecases.ocorrencia;
 
+import com.ferreiraluizga.entities.Dispositivo;
 import com.ferreiraluizga.entities.Ocorrencia;
 import com.ferreiraluizga.enums.StatusOcorrencia;
 import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
@@ -20,12 +21,12 @@ public class SalvarOcorrenciaUseCaseImpl implements SalvarOcorrenciaUseCase{
 
     @Override
     public Ocorrencia execute(Ocorrencia ocorrencia) {
-        dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
+        Dispositivo dispositivo = dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
                 .orElseThrow(() -> new DispositivoNaoEncontrado(ocorrencia.dispositivo().id()));
 
         return ocorrenciaGateway.salvarOcorrencia(new Ocorrencia(
                 null,
-                ocorrencia.dispositivo(),
+                dispositivo,
                 LocalDateTime.now(),
                 ocorrencia.descricao(),
                 StatusOcorrencia.ABERTA,

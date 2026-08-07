@@ -2,6 +2,8 @@ package com.ferreiraluizga.infrastructure.presentation;
 
 import com.ferreiraluizga.entities.Ocorrencia;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
+import com.ferreiraluizga.infrastructure.dtos.request.OcorrenciaFecharRequest;
+import com.ferreiraluizga.infrastructure.dtos.request.OcorrenciaManutencaoRequest;
 import com.ferreiraluizga.infrastructure.dtos.request.OcorrenciaRequest;
 import com.ferreiraluizga.infrastructure.dtos.response.OcorrenciaResponse;
 import com.ferreiraluizga.infrastructure.mappers.ocorrencia.OcorrenciaDtoMapper;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/v1/dispositivos")
+@RequestMapping("/api/v1/ocorrencias")
 @RequiredArgsConstructor
 public class OcorrenciaController {
 
@@ -54,17 +56,24 @@ public class OcorrenciaController {
     }
 
     @PutMapping("/definir-manutencao/{id}")
-    public ResponseEntity<OcorrenciaResponse> definirOcorrenciaManutencao(@PathVariable Long id, @RequestBody String observacao) {
-        Ocorrencia response = definirOcorrenciaManutencaoUseCase.execute(id, observacao);
+    public ResponseEntity<OcorrenciaResponse> definirOcorrenciaManutencao(@PathVariable Long id, @RequestBody OcorrenciaManutencaoRequest dto) {
+        Ocorrencia response = definirOcorrenciaManutencaoUseCase.execute(id, dto.observacao());
         return ResponseEntity.status(HttpStatus.OK)
                 .body(ocorrenciaDtoMapper.toDto(response));
     }
 
     @PutMapping("/fechar-ocorrencia/{id}")
-    public ResponseEntity<OcorrenciaResponse> fecharOcorrencia(@PathVariable Long id, @RequestBody String feedback) {
-        Ocorrencia response = fecharOcorrenciaUseCase.execute(id, feedback);
+    public ResponseEntity<OcorrenciaResponse> fecharOcorrencia(@PathVariable Long id, @RequestBody OcorrenciaFecharRequest dto) {
+        Ocorrencia response = fecharOcorrenciaUseCase.execute(id, dto.feedback());
         return ResponseEntity.status(HttpStatus.OK)
                 .body(ocorrenciaDtoMapper.toDto(response));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirOcorrencia(@PathVariable Long id) {
+        excluirOcorrenciaUseCase.execute(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

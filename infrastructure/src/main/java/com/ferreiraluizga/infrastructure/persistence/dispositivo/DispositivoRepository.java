@@ -17,7 +17,7 @@ public interface DispositivoRepository extends JpaRepository<DispositivoEntity, 
     List<DispositivoEntity> findAll();
 
     @Override
-    @EntityGraph(attributePaths = {"dispositivos"})
+    @EntityGraph(attributePaths = {"ocorrencias"})
     Optional<DispositivoEntity> findById(Long id);
 
 }
