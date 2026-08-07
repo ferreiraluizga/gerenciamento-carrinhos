@@ -28,18 +28,33 @@ public class FecharOcorrenciaUseCaseImpl implements FecharOcorrenciaUseCase{
         Dispositivo dispositivo = dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
                 .orElseThrow(() -> new DispositivoNaoEncontrado(ocorrencia.dispositivo().id()));
 
-        dispositivoGateway.atualizarDispositivo(new Dispositivo(
-                dispositivo.id(),
-                dispositivo.serial(),
-                dispositivo.numDispositivo(),
-                dispositivo.modeloDispositivo(),
-                dispositivo.sistemaOperacional(),
-                dispositivo.ativo(),
-                null,
-                false,
-                dispositivo.carrinho(),
-                dispositivo.ocorrencias()
-        ));
+        if (ocorrencia.statusOcorrencia() == StatusOcorrencia.MANUTENCAO) {
+            dispositivoGateway.atualizarDispositivo(new Dispositivo(
+                    dispositivo.id(),
+                    dispositivo.serial(),
+                    dispositivo.numDispositivo(),
+                    dispositivo.modeloDispositivo(),
+                    dispositivo.sistemaOperacional(),
+                    dispositivo.ativo(),
+                    null,
+                    false,
+                    dispositivo.carrinho(),
+                    dispositivo.ocorrencias()
+            ));
+        } else {
+            dispositivoGateway.atualizarDispositivo(new Dispositivo(
+                    dispositivo.id(),
+                    dispositivo.serial(),
+                    dispositivo.numDispositivo(),
+                    dispositivo.modeloDispositivo(),
+                    dispositivo.sistemaOperacional(),
+                    dispositivo.ativo(),
+                    dispositivo.observacao(),
+                    false,
+                    dispositivo.carrinho(),
+                    dispositivo.ocorrencias()
+            ));
+        }
 
         return ocorrenciaGateway.fecharOcorrencia(ocorrencia.fecharOcorrencia(feedback));
     }
