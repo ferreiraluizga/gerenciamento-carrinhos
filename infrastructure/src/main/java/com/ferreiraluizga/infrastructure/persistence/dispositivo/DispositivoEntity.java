@@ -29,7 +29,7 @@ public class DispositivoEntity {
     private Integer numDispositivo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "modelo_dispositivo")
+    @Column(name = "modelo_dispositivo", nullable = false)
     private ModeloDispositivo modeloDispositivo;
 
     @Enumerated(EnumType.STRING)
