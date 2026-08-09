@@ -14,10 +14,6 @@ public interface OcorrenciaGateway {
 
     Optional<Ocorrencia> buscarOcorrenciaPorId(Long id);
 
-    Ocorrencia definirOcorrenciaManutencao(Ocorrencia ocorrencia);
-
-    Ocorrencia fecharOcorrencia(Ocorrencia ocorrencia);
-
     void excluirOcorrencia(Long id);
 
 }

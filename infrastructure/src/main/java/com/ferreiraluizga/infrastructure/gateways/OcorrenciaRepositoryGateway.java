@@ -39,18 +39,6 @@ public class OcorrenciaRepositoryGateway implements OcorrenciaGateway {
     }
 
     @Override
-    public Ocorrencia definirOcorrenciaManutencao(Ocorrencia ocorrencia) {
-        OcorrenciaEntity entityResponse = ocorrenciaRepository.save(ocorrenciaEntityMapper.toEntity(ocorrencia));
-        return ocorrenciaEntityMapper.toDomain(entityResponse);
-    }
-
-    @Override
-    public Ocorrencia fecharOcorrencia(Ocorrencia ocorrencia) {
-        OcorrenciaEntity entityResponse = ocorrenciaRepository.save(ocorrenciaEntityMapper.toEntity(ocorrencia));
-        return ocorrenciaEntityMapper.toDomain(entityResponse);
-    }
-
-    @Override
     public void excluirOcorrencia(Long id) {
         ocorrenciaRepository.deleteById(id);
     }

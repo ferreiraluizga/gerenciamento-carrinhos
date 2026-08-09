@@ -39,12 +39,6 @@ public class CarrinhoRepositoryGateway implements CarrinhoGateway {
     }
 
     @Override
-    public Carrinho atualizarCarrinho(Carrinho carrinho) {
-        CarrinhoEntity entityResponse = carrinhoRepository.save(carrinhoEntityMapper.toEntity(carrinho));
-        return carrinhoEntityMapper.toDomain(entityResponse);
-    }
-
-    @Override
     public void excluirCarrinho(Long id) {
         carrinhoRepository.deleteById(id);
     }

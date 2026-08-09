@@ -25,7 +25,7 @@ public class DefinirOcorrenciaManutencaoUseCaseImpl implements DefinirOcorrencia
         Dispositivo dispositivo = dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
                 .orElseThrow(() -> new DispositivoNaoEncontrado(ocorrencia.dispositivo().id()));
 
-        dispositivoGateway.atualizarDispositivo(new Dispositivo(
+        dispositivoGateway.salvarDispositivo(new Dispositivo(
                 dispositivo.id(),
                 dispositivo.serial(),
                 dispositivo.numDispositivo(),
@@ -38,7 +38,7 @@ public class DefinirOcorrenciaManutencaoUseCaseImpl implements DefinirOcorrencia
                 dispositivo.ocorrencias()
         ));
 
-        return ocorrenciaGateway.definirOcorrenciaManutencao(ocorrencia.definirOcorrenciaManutencao());
+        return ocorrenciaGateway.salvarOcorrencia(ocorrencia.definirOcorrenciaManutencao());
     }
 
 }

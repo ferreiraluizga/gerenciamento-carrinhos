@@ -45,12 +45,6 @@ public class DispositivoRepositoryGateway implements DispositivoGateway {
     }
 
     @Override
-    public Dispositivo atualizarDispositivo(Dispositivo dispositivo) {
-        DispositivoEntity entityResponse = dispositivoRepository.save(dispositivoEntityMapper.toEntity(dispositivo));
-        return dispositivoEntityMapper.toDomain(entityResponse);
-    }
-
-    @Override
     public void excluirDispositivo(Long id) {
         dispositivoRepository.deleteById(id);
     }

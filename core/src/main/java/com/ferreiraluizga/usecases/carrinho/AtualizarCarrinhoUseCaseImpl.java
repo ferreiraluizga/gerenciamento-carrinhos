@@ -17,7 +17,7 @@ public class AtualizarCarrinhoUseCaseImpl implements AtualizarCarrinhoUseCase {
         carrinhoGateway.buscarCarrinhoPorId(carrinho.id())
                 .orElseThrow(() -> new CarrinhoNaoEncontrado(carrinho.id()));
 
-        return carrinhoGateway.atualizarCarrinho(carrinho);
+        return carrinhoGateway.salvarCarrinho(carrinho);
     }
 
 }

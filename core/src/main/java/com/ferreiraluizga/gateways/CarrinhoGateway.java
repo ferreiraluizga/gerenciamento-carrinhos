@@ -13,8 +13,6 @@ public interface CarrinhoGateway {
 
     Optional<Carrinho> buscarCarrinhoPorId(Long id);
 
-    Carrinho atualizarCarrinho(Carrinho carrinho);
-
     void excluirCarrinho(Long id);
 
 }

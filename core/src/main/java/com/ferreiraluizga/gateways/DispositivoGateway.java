@@ -15,8 +15,6 @@ public interface DispositivoGateway {
 
     Optional<Dispositivo> buscarDispositivoPorSerial(String serial);
 
-    Dispositivo atualizarDispositivo(Dispositivo dispositivo);
-
     void excluirDispositivo(Long id);
 
 }

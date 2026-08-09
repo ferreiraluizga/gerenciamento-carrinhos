@@ -22,7 +22,7 @@ public class AtualizarDispositivoUseCaseImpl implements AtualizarDispositivoUseC
                 .ifPresent(d -> {
                     throw new SerialEncontrado(dispositivo.serial());
                 });
-        return dispositivoGateway.atualizarDispositivo(dispositivo);
+        return dispositivoGateway.salvarDispositivo(dispositivo);
     }
 
 }
