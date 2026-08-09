@@ -1,7 +1,6 @@
 package com.ferreiraluizga.infrastructure.presentation;
 
 import com.ferreiraluizga.entities.Ocorrencia;
-import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.infrastructure.dtos.request.OcorrenciaFecharRequest;
 import com.ferreiraluizga.infrastructure.dtos.request.OcorrenciaManutencaoRequest;
 import com.ferreiraluizga.infrastructure.dtos.request.OcorrenciaRequest;
@@ -49,8 +48,7 @@ public class OcorrenciaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OcorrenciaResponse> buscarOcorrenciaPorId(@PathVariable Long id) {
-        Ocorrencia response = buscarOcorrenciaPorIdUseCase.execute(id)
-                .orElseThrow(() -> new OcorrenciaNaoEncontrada(id));
+        Ocorrencia response = buscarOcorrenciaPorIdUseCase.execute(id);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(ocorrenciaDtoMapper.toDto(response));
     }

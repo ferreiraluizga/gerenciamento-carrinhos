@@ -1,6 +1,7 @@
 package com.ferreiraluizga.usecases.dispositivo;
 
 import com.ferreiraluizga.entities.Dispositivo;
+import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.gateways.DispositivoGateway;
 
 import java.util.Optional;
@@ -14,8 +15,9 @@ public class BuscarDispositivoPorIdUseCaseImpl implements BuscarDispositivoPorId
     }
 
     @Override
-    public Optional<Dispositivo> execute(Long id) {
-        return dispositivoGateway.buscarDispositivoPorId(id);
+    public Dispositivo execute(Long id) {
+        return dispositivoGateway.buscarDispositivoPorId(id)
+                .orElseThrow(() -> new DispositivoNaoEncontrado(id));
     }
 
 }

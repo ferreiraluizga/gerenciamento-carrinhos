@@ -2,6 +2,7 @@ package com.ferreiraluizga.usecases.ocorrencia;
 
 import com.ferreiraluizga.entities.Dispositivo;
 import com.ferreiraluizga.entities.Ocorrencia;
+import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.gateways.DispositivoGateway;
 import com.ferreiraluizga.gateways.OcorrenciaGateway;
@@ -22,7 +23,7 @@ public class DefinirOcorrenciaManutencaoUseCaseImpl implements DefinirOcorrencia
                 .orElseThrow(() -> new OcorrenciaNaoEncontrada(id));
 
         Dispositivo dispositivo = dispositivoGateway.buscarDispositivoPorId(ocorrencia.dispositivo().id())
-                .orElseThrow(() -> new OcorrenciaNaoEncontrada(ocorrencia.dispositivo().id()));
+                .orElseThrow(() -> new DispositivoNaoEncontrado(ocorrencia.dispositivo().id()));
 
         dispositivoGateway.atualizarDispositivo(new Dispositivo(
                 dispositivo.id(),

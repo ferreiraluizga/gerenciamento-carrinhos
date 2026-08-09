@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface BuscarCarrinhoPorIdUseCase {
 
-    Optional<Carrinho> execute(Long id);
+    Carrinho execute(Long id);
 
 }

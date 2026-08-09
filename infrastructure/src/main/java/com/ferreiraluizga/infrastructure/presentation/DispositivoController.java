@@ -1,7 +1,6 @@
 package com.ferreiraluizga.infrastructure.presentation;
 
 import com.ferreiraluizga.entities.Dispositivo;
-import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.infrastructure.dtos.request.DispositivoRequest;
 import com.ferreiraluizga.infrastructure.dtos.response.DispositivoResponse;
 import com.ferreiraluizga.infrastructure.mappers.dispositivo.DispositivoDtoMapper;
@@ -46,8 +45,7 @@ public class DispositivoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DispositivoResponse> buscarDispositivoPorId(@PathVariable Long id) {
-        Dispositivo response = buscarDispositivoPorIdUseCase.execute(id)
-                .orElseThrow(() -> new DispositivoNaoEncontrado(id));
+        Dispositivo response = buscarDispositivoPorIdUseCase.execute(id);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(dispositivoDtoMapper.toDto(response));
     }

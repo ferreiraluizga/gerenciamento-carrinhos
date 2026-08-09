@@ -15,8 +15,9 @@ public class BuscarOcorrenciaPorIdUseCaseImpl implements BuscarOcorrenciaPorIdUs
     }
 
     @Override
-    public Optional<Ocorrencia> execute(Long id) {
-        return ocorrenciaGateway.buscarOcorrenciaPorId(id);
+    public Ocorrencia execute(Long id) {
+        return ocorrenciaGateway.buscarOcorrenciaPorId(id)
+                .orElseThrow(() -> new OcorrenciaNaoEncontrada(id));
     }
 
 }

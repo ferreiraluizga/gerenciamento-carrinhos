@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface BuscarDispositivoPorIdUseCase {
 
-    Optional<Dispositivo> execute(Long id);
+    Dispositivo execute(Long id);
 
 }

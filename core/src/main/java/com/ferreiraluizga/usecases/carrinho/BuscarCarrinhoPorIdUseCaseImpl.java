@@ -1,6 +1,7 @@
 package com.ferreiraluizga.usecases.carrinho;
 
 import com.ferreiraluizga.entities.Carrinho;
+import com.ferreiraluizga.exceptions.carrinho.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.gateways.CarrinhoGateway;
 
 import java.util.Optional;
@@ -14,8 +15,9 @@ public class BuscarCarrinhoPorIdUseCaseImpl implements BuscarCarrinhoPorIdUseCas
     }
 
     @Override
-    public Optional<Carrinho> execute(Long id) {
-        return carrinhoGateway.buscarCarrinhoPorId(id);
+    public Carrinho execute(Long id) {
+        return carrinhoGateway.buscarCarrinhoPorId(id)
+                .orElseThrow(() -> new CarrinhoNaoEncontrado(id));
     }
 
 }

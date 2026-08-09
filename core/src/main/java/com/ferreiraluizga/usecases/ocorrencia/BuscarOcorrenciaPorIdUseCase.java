@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface BuscarOcorrenciaPorIdUseCase {
 
-    Optional<Ocorrencia> execute(Long id);
+    Ocorrencia execute(Long id);
 
 }
