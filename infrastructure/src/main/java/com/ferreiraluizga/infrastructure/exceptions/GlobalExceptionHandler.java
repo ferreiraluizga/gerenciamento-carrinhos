@@ -5,6 +5,7 @@ import com.ferreiraluizga.exceptions.carrinho.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.exceptions.dispositivo.SerialEncontrado;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
+import com.ferreiraluizga.exceptions.turma.TurmaNaoEncontrada;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -78,6 +79,14 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleDispositivoException(OcorrenciaNaoEncontrada e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problemDetail.setTitle("Ocorrência Não Encontrada");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(TurmaNaoEncontrada.class)
+    public ProblemDetail handleDispositivoException(TurmaNaoEncontrada e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Turma Não Encontrada");
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }
