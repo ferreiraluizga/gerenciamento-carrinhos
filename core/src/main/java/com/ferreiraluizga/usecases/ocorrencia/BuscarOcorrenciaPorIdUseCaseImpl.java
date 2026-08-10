@@ -4,8 +4,6 @@ import com.ferreiraluizga.entities.Ocorrencia;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.gateways.OcorrenciaGateway;
 
-import java.util.Optional;
-
 public class BuscarOcorrenciaPorIdUseCaseImpl implements BuscarOcorrenciaPorIdUseCase {
 
     private final OcorrenciaGateway ocorrenciaGateway;

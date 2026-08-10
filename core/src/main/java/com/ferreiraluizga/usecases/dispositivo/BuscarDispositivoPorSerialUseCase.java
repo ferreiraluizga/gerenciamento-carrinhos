@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface BuscarDispositivoPorSerialUseCase {
 
-    Optional<Dispositivo> execute(String serial);
+    Dispositivo execute(String serial);
 
 }

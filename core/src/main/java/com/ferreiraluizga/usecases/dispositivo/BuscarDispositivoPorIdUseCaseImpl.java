@@ -4,8 +4,6 @@ import com.ferreiraluizga.entities.Dispositivo;
 import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.gateways.DispositivoGateway;
 
-import java.util.Optional;
-
 public class BuscarDispositivoPorIdUseCaseImpl implements BuscarDispositivoPorIdUseCase{
 
     private final DispositivoGateway dispositivoGateway;

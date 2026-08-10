@@ -4,8 +4,6 @@ import com.ferreiraluizga.entities.Carrinho;
 import com.ferreiraluizga.exceptions.carrinho.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.gateways.CarrinhoGateway;
 
-import java.util.Optional;
-
 public class BuscarCarrinhoPorIdUseCaseImpl implements BuscarCarrinhoPorIdUseCase {
 
     private final CarrinhoGateway carrinhoGateway;

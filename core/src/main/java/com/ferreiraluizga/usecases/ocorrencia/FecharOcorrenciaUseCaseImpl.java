@@ -8,8 +8,6 @@ import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.gateways.DispositivoGateway;
 import com.ferreiraluizga.gateways.OcorrenciaGateway;
 
-import java.time.LocalDateTime;
-
 public class FecharOcorrenciaUseCaseImpl implements FecharOcorrenciaUseCase{
 
     private final OcorrenciaGateway ocorrenciaGateway;
