@@ -12,7 +12,8 @@ public class TurmaEntityMapper {
         return new Turma(
                 entity.getId(),
                 entity.getNome(),
-                entity.getTurno()
+                entity.getTurno(),
+                null
         );
     }
 
@@ -21,7 +22,8 @@ public class TurmaEntityMapper {
         return new TurmaEntity(
                 turma.id(),
                 turma.nome(),
-                turma.turno()
+                turma.turno(),
+                null
         );
     }
 

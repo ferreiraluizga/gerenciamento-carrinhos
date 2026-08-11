@@ -15,6 +15,7 @@ public class CarrinhoDtoMapper {
         return new Carrinho(
                 null,
                 dto.descricao(),
+                Collections.emptyList(),
                 Collections.emptyList()
         );
     }
@@ -24,6 +25,7 @@ public class CarrinhoDtoMapper {
         return new Carrinho(
                 id,
                 dto.descricao(),
+                Collections.emptyList(),
                 Collections.emptyList()
         );
     }

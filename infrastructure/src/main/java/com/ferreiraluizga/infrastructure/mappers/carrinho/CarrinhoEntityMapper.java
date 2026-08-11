@@ -31,7 +31,8 @@ public class CarrinhoEntityMapper {
         return new Carrinho(
                 entity.getId(),
                 entity.getDescricao(),
-                dispositivos
+                dispositivos,
+                null
         );
     }
 
@@ -48,7 +49,8 @@ public class CarrinhoEntityMapper {
         return new CarrinhoEntity(
                 carrinho.id(),
                 carrinho.descricao(),
-                dispositivosEntity
+                dispositivosEntity,
+                null
         );
     }
 }

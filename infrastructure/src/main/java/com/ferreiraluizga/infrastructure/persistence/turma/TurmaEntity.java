@@ -1,10 +1,13 @@
 package com.ferreiraluizga.infrastructure.persistence.turma;
 
 import com.ferreiraluizga.enums.Turno;
+import com.ferreiraluizga.infrastructure.persistence.agendamento.AgendamentoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "turmas")
@@ -23,5 +26,8 @@ public class TurmaEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "turno", nullable = false)
     private Turno turno;
+
+    @OneToMany(mappedBy = "turma")
+    private List<AgendamentoEntity> agendamentos;
 
 }

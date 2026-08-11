@@ -13,7 +13,8 @@ public class TurmaDtoMapper {
         return new Turma(
                 null,
                 dto.nome(),
-                dto.turno()
+                dto.turno(),
+                null
         );
     }
 

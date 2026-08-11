@@ -14,7 +14,7 @@ public class ListarTurmasUseCaseImpl implements ListarTurmasUseCase{
     }
 
     @Override
-    public List<Turma> listarTurmas() {
+    public List<Turma> execute() {
         return turmaGateway.listarTurmas();
     }
 

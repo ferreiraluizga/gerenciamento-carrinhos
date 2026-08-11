@@ -1,5 +1,6 @@
 package com.ferreiraluizga.infrastructure.persistence.carrinho;
 
+import com.ferreiraluizga.infrastructure.persistence.agendamento.AgendamentoEntity;
 import com.ferreiraluizga.infrastructure.persistence.dispositivo.DispositivoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,8 @@ public class CarrinhoEntity {
 
     @OneToMany(mappedBy = "carrinho")
     private List<DispositivoEntity> dispositivos;
+
+    @OneToMany(mappedBy = "carrinho")
+    private List<AgendamentoEntity> agendamentos;
 
 }

@@ -14,7 +14,9 @@ public class DispositivoDtoMapper {
         Carrinho c = new Carrinho(
                 dto.carrinhoId(),
                 null,
-                null);
+                null,
+                null
+        );
 
         return new Dispositivo(
                 null,
@@ -35,7 +37,9 @@ public class DispositivoDtoMapper {
         Carrinho c = new Carrinho(
                 dto.carrinhoId(),
                 null,
-                null);
+                null,
+                null
+        );
 
         return new Dispositivo(
                 id,

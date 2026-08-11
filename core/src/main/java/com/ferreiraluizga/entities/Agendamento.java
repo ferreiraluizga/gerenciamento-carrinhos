@@ -18,6 +18,9 @@ public record Agendamento(
 ) {
 
     public Agendamento salvarAgendamentoFixo() {
+        DiaDaSemana novoDia = this.diaDaSemana() != null ? this.diaDaSemana() :
+                (this.data() != null ? DiaDaSemana.fromJavaDayOfWeek(this.data().getDayOfWeek()) : null);
+
         return new Agendamento(
                 this.id(),
                 this.professor(),
@@ -26,7 +29,7 @@ public record Agendamento(
                 this.turma(),
                 this.aula(),
                 null,
-                this.diaDaSemana()
+                novoDia
         );
     }
 

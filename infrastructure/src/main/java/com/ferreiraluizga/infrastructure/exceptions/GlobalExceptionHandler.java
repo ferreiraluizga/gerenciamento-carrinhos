@@ -1,6 +1,8 @@
 package com.ferreiraluizga.infrastructure.exceptions;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import com.ferreiraluizga.exceptions.agendamento.AgendamentoNaoEncontrado;
+import com.ferreiraluizga.exceptions.agendamento.ConflitoAgendamento;
 import com.ferreiraluizga.exceptions.carrinho.CarrinhoNaoEncontrado;
 import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.exceptions.dispositivo.SerialEncontrado;
@@ -41,7 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SerialEncontrado.class)
     public ProblemDetail handleSerialException(SerialEncontrado e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
-        problemDetail.setTitle("Conflito de Dados");
+        problemDetail.setTitle("Conflito de Dados no Dispositivo");
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }
@@ -76,7 +78,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(OcorrenciaNaoEncontrada.class)
-    public ProblemDetail handleDispositivoException(OcorrenciaNaoEncontrada e) {
+    public ProblemDetail handleOcorrenciaException(OcorrenciaNaoEncontrada e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problemDetail.setTitle("Ocorrência Não Encontrada");
         problemDetail.setProperty("timestamp", Instant.now());
@@ -84,9 +86,25 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(TurmaNaoEncontrada.class)
-    public ProblemDetail handleDispositivoException(TurmaNaoEncontrada e) {
+    public ProblemDetail handleTurmaException(TurmaNaoEncontrada e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problemDetail.setTitle("Turma Não Encontrada");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(AgendamentoNaoEncontrado.class)
+    public ProblemDetail handleAgendamentoException(AgendamentoNaoEncontrado e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Agendamento Não Encontrado");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(ConflitoAgendamento.class)
+    public ProblemDetail handleConflitoAgendamentoException(ConflitoAgendamento e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
+        problemDetail.setTitle("Conflito de Dados no Agendamento");
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }

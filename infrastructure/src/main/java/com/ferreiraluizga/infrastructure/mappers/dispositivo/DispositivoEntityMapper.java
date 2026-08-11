@@ -43,6 +43,7 @@ public class DispositivoEntityMapper {
                 new Carrinho(
                         entity.getCarrinho().getId(),
                         entity.getCarrinho().getDescricao(),
+                        null,
                         null
                 ),
                 ocorrencias
@@ -71,6 +72,7 @@ public class DispositivoEntityMapper {
                 new CarrinhoEntity(
                         dispositivo.carrinho().id(),
                         dispositivo.carrinho().descricao(),
+                        null,
                         null
                 ),
                 ocorrenciasEntity
