@@ -8,6 +8,9 @@ import com.ferreiraluizga.exceptions.dispositivo.DispositivoNaoEncontrado;
 import com.ferreiraluizga.exceptions.dispositivo.SerialEncontrado;
 import com.ferreiraluizga.exceptions.ocorrencia.OcorrenciaNaoEncontrada;
 import com.ferreiraluizga.exceptions.turma.TurmaNaoEncontrada;
+import com.ferreiraluizga.exceptions.usuario.EmailExistente;
+import com.ferreiraluizga.exceptions.usuario.FalhaAutenticacao;
+import com.ferreiraluizga.exceptions.usuario.UsuarioNaoEncontrado;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -105,6 +108,30 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleConflitoAgendamentoException(ConflitoAgendamento e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
         problemDetail.setTitle("Conflito de Dados no Agendamento");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(EmailExistente.class)
+    public ProblemDetail handleEmailException(EmailExistente e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
+        problemDetail.setTitle("Conflito de dados no usuário");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(UsuarioNaoEncontrado.class)
+    public ProblemDetail handleAgendamentoException(UsuarioNaoEncontrado e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Usuário Não Encontrado");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(FalhaAutenticacao.class)
+    public ProblemDetail handleAgendamentoException(FalhaAutenticacao e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, e.getMessage());
+        problemDetail.setTitle("Falha na autenticação");
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }
