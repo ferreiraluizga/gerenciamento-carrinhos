@@ -28,24 +28,22 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // CORREÇÃO PARA O H2: Libera o acesso visual ao console do banco de dados
                         .requestMatchers("/h2-console/**").permitAll()
 
-                        // Rotas do Swagger públicas
                         .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers("/swagger-resources/**").permitAll()
                         .requestMatchers("/webjars/**").permitAll()
 
-                        // Endpoints de autenticação públicos
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/cadastrar").permitAll()
 
-                        // Regras de Autorização por Perfil
-                        .requestMatchers("/api/v1/agendamentos/**").hasAnyRole("COMUM", "ADMIN")
-                        .requestMatchers("/api/v1/ocorrencias/**").hasAnyRole("COMUM", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/agendamentos").hasAnyRole("COMUM", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/ocorrencias").hasAnyRole("COMUM", "ADMIN")
 
+                        .requestMatchers("/api/v1/agendamentos/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/ocorrencias/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/carrinhos/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/dispositivos/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/turmas/**").hasRole("ADMIN")
