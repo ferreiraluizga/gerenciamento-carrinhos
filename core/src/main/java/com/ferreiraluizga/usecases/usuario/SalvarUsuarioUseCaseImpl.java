@@ -25,12 +25,14 @@ public class SalvarUsuarioUseCaseImpl implements SalvarUsuarioUseCase{
 
         String senhaCriptografada = passwordHasher.hash(usuario.senha());
 
+        UsuarioRole role = (usuario.role() != null) ? usuario.role() : UsuarioRole.COMUM;
+
         return usuarioGateway.salvarUsuario(new Usuario(
                 null,
                 usuario.nome(),
                 usuario.email(),
                 senhaCriptografada,
-                UsuarioRole.COMUM
+                role
         ));
     }
 
