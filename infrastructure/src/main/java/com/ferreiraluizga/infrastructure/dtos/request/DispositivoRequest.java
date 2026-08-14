@@ -2,14 +2,17 @@ package com.ferreiraluizga.infrastructure.dtos.request;
 
 import com.ferreiraluizga.enums.ModeloDispositivo;
 import com.ferreiraluizga.enums.SistemaOperacional;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record DispositivoRequest(
-        String serial,
-        Integer numDispositivo,
-        ModeloDispositivo modeloDispositivo,
+        @NotBlank String serial,
+        @Min(0) Integer numDispositivo,
+        @NotNull ModeloDispositivo modeloDispositivo,
         SistemaOperacional sistemaOperacional,
-        Boolean ativo,
+        @NotNull Boolean ativo,
         String observacao,
-        Boolean manutencao,
-        Long carrinhoId
+        @NotNull Boolean manutencao,
+        @NotNull Long carrinhoId
 ) { }

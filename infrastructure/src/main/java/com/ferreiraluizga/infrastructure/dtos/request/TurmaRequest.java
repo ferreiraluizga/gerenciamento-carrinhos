@@ -1,8 +1,10 @@
 package com.ferreiraluizga.infrastructure.dtos.request;
 
 import com.ferreiraluizga.enums.Turno;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record TurmaRequest(
-        String nome,
-        Turno turno
+        @NotBlank String nome,
+        @NotNull Turno turno
 ) { }

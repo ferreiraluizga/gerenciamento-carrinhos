@@ -1,7 +1,11 @@
 package com.ferreiraluizga.infrastructure.dtos.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 public record UsuarioRequest(
-        String nome,
-        String email,
-        String senha
+        @NotBlank String nome,
+        @NotBlank @Email String email,
+        @NotBlank @Min(8) String senha
 ) { }
