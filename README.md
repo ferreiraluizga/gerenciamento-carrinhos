@@ -17,7 +17,6 @@ API desenvolvida para a Escola Estadual Comendador Mario Reys com o objetivo de 
 ## 🗺️ Modelagem do Sistema
 
 ### Diagrama de Classes
-O diagrama de classes representa a estrutura de dados e as regras de negócio. Ele utiliza as tabelas associativas `ItemVenda` e `ItemPedido` para garantir a integridade do estoque e dos históricos de preços de custo e venda.
 
 ![Diagrama de Classes](docs/class-diagram.svg)
 
