@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: gerenciamento-carrinhos
+
+  # Configuração do Banco de Dados PostgreSQL baseado em variáveis de ambiente
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/gerenciamentocarrinhos}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  # Configurações do Hibernate/JPA ajustadas para o Postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Configurações personalizadas da sua API (ex: JWT)
+api:
+  security:
+    token:
+      secret: ${API_SECURITY_TOKEN_SECRET}
