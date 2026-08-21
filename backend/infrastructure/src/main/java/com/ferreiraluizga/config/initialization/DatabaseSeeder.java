@@ -26,7 +26,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     null,
                     "Administrador Sistema",
                     emailAdmin,
-                    "admin123",
+                    "admin12345",
                     UsuarioRole.ADMIN
             );
 
